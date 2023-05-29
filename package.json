@@ -14,12 +14,15 @@
     "url": "https://tailadmin.com"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/nookies": "^2.0.3",
     "apexcharts": "^3.37.0",
     "axios": "^1.4.0",
     "formik": "^2.4.0",
     "jsvectormap": "^1.5.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
+    "nookies": "^2.5.2",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-dom": "^18.2.0",
