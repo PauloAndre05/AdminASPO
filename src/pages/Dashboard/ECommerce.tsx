@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import CardFour from '../../components/CardFour.tsx';
 import CardOne from '../../components/CardOne.tsx';
 import CardThree from '../../components/CardThree.tsx';
@@ -13,9 +14,15 @@ import DefaultLayout from '../../layout/DefaultLayout.tsx';
 import { getUserInfo } from '../Authentication/services/index.ts';
 
 const ECommerce = () => {
-  const pop = getUserInfo();
+  const pop = getUserInfo() as { id: string };
+  const navigate = useNavigate();
   const { data: User } = useFetch(`/users/${pop?.id}`);
   console.log(User);
+
+  if (!pop) {
+    navigate('/auth/signin');
+    return <></>;
+  }
 
   return (
     <DefaultLayout>

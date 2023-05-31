@@ -7,6 +7,7 @@ import { setCookie } from 'nookies';
 import { toast } from 'react-toastify';
 
 const SignIn = () => {
+  // document.location.hostname = '/auth/signin';
   const [isSubmiting, setIsSubmiting] = useState(false);
   let history = useNavigate();
   const formik = useFormik({
@@ -25,7 +26,7 @@ const SignIn = () => {
         const { jwt, user } = response.data;
         setCookie(null, 'token', jwt, { path: '/' });
         history('/');
-      } catch (err) {
+      } catch (err: any) {
         toast.error(err?.response?.data?.message);
       } finally {
         setTimeout(() => {
