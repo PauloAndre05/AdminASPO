@@ -23,7 +23,7 @@ const SignIn = () => {
       try {
         setIsSubmiting(true);
         const response = await api.post('/auth/local', data);
-        const { jwt, user } = response.data;
+        const { jwt } = response.data;
         setCookie(null, 'token', jwt, { path: '/' });
         history('/');
       } catch (err: any) {
