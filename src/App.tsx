@@ -13,7 +13,9 @@ import Settings from './pages/Settings';
 import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
+import { ToastContainer, toast } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -34,6 +36,7 @@ function App() {
     <p className=" text-center text-danger">Failed to lead app</p>
   ) : (
     <>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<ECommerce />} />
         <Route path="/calendar" element={<Calendar />} />
@@ -41,6 +44,14 @@ function App() {
         <Route path="/forms/form-elements" element={<FormElements />} />
         <Route path="/forms/form-layout" element={<FormLayout />} />
         <Route path="/tables" element={<Tables />} />
+        <Route
+          path="*"
+          element={
+            <div className="flex h-screen w-full items-center justify-center text-5xl text-black-2">
+              Error 404 | NOT FOUND
+            </div>
+          }
+        />
         <Route path="/settings" element={<Settings />} />
         <Route path="/chart" element={<Chart />} />
         <Route path="/ui/alerts" element={<Alerts />} />

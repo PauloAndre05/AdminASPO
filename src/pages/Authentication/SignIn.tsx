@@ -1,10 +1,39 @@
-import { Link } from 'react-router-dom';
-import Breadcrumb from '../../components/Breadcrumb';
-import LogoDark from '../../images/logo/logo-dark.svg';
-import Logo from '../../images/logo/logo.svg';
-import DefaultLayout from '../../layout/DefaultLayout';
+import { Link, useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
+import { useFormik } from 'formik';
+import { useState } from 'react';
+import { api } from '../../services';
+import { setCookie } from 'nookies';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
+  const [isSubmiting, setIsSubmiting] = useState(false);
+  let history = useNavigate();
+  const formik = useFormik({
+    initialValues: {
+      identifier: '',
+      password: '',
+    },
+    validationSchema: yup.object({
+      identifier: yup.string().required('Este campo é obrigatório'),
+      password: yup.string().required('Este campo é obrigatório'),
+    }),
+    onSubmit: async (data) => {
+      try {
+        setIsSubmiting(true);
+        const response = await api.post('/auth/local', data);
+        const { jwt, user } = response.data;
+        setCookie(null, 'token', jwt, { path: '/' });
+        history('/');
+      } catch (err) {
+        toast.error(err?.response?.data?.message);
+      } finally {
+        setTimeout(() => {
+          setIsSubmiting(false);
+        }, 4000);
+      }
+    },
+  });
   return (
     // <DefaultLayout>
     <>
@@ -155,17 +184,25 @@ const SignIn = () => {
                 Entrar
               </h2>
 
-              <form>
+              <form onSubmit={formik.handleSubmit}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
                     Email
                   </label>
                   <div className="relative">
                     <input
-                      type="email"
+                      type="text"
+                      name="identifier"
+                      id="identifier"
+                      onChange={formik.handleChange}
                       placeholder="Insira o seu email"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     />
+                    {formik.touched.identifier && formik.errors.identifier ? (
+                      <span className="text-danger">
+                        {formik.errors.identifier}
+                      </span>
+                    ) : null}
 
                     <span className="absolute right-4 top-4">
                       <svg
@@ -194,9 +231,17 @@ const SignIn = () => {
                   <div className="relative">
                     <input
                       type="password"
+                      id="password"
+                      name="password"
+                      onChange={formik.handleChange}
                       placeholder="6+ Caracteres"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     />
+                    {formik.touched.identifier && formik.errors.identifier ? (
+                      <span className="text-danger">
+                        {formik.errors.identifier}
+                      </span>
+                    ) : null}
 
                     <span className="absolute right-4 top-4">
                       <svg
@@ -225,6 +270,7 @@ const SignIn = () => {
                 <div className="mb-5">
                   <input
                     type="submit"
+                    disabled={isSubmiting}
                     value="Entrar"
                     className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
                   />

@@ -8,9 +8,15 @@ import ChartTwo from '../../components/ChartTwo.tsx';
 import ChatCard from '../../components/ChatCard.tsx';
 import MapOne from '../../components/MapOne.tsx';
 import TableOne from '../../components/TableOne.tsx';
+import useFetch from '../../hooks/usefetch.ts';
 import DefaultLayout from '../../layout/DefaultLayout.tsx';
+import { getUserInfo } from '../Authentication/services/index.ts';
 
 const ECommerce = () => {
+  const pop = getUserInfo();
+  const { data: User } = useFetch(`/users/${pop?.id}`);
+  console.log(User);
+
   return (
     <DefaultLayout>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
