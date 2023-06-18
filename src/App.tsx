@@ -15,8 +15,10 @@ import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import { ToastContainer, toast } from 'react-toastify';
 
-import 'react-toastify/dist/ReactToastify.css';
 import { getUserInfo } from './pages/Authentication/services';
+import { Official } from './pages/official';
+import { Category } from './pages/Category';
+import { Pedidos } from './pages/pedidos';
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -37,10 +39,12 @@ function App() {
     <p className=" text-center text-danger">Failed to lead app</p>
   ) : (
     <>
-      <ToastContainer />
       <Routes>
         <Route path="/" element={<ECommerce />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/official" element={<Official />} />
+        <Route path="/Category" element={<Category />} />
+        <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forms/form-elements" element={<FormElements />} />
         <Route path="/forms/form-layout" element={<FormLayout />} />

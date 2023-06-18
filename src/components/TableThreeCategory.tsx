@@ -15,7 +15,7 @@ type officilProps = {
     telefone: string;
   };
 };
-const TableThree: React.FC<Itables> = ({
+const TableThreeCategory: React.FC<Itables> = ({
   heads,
   data,
   onRemove,
@@ -47,16 +47,6 @@ const TableThree: React.FC<Itables> = ({
                   <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
                       {item?.attributes?.nome}
-                    </h5>
-                  </td>
-                  <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      {item?.attributes?.email}
-                    </h5>
-                  </td>{' '}
-                  <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
-                    <h5 className="font-medium text-black dark:text-white">
-                      {item?.attributes?.telefone}
                     </h5>
                   </td>
                   <td className="px-10">
@@ -109,4 +99,4 @@ const TableThree: React.FC<Itables> = ({
   );
 };
 
-export default TableThree;
+export default TableThreeCategory;

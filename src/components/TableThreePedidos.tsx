@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import React from 'react';
 import { AiOutlineEdit } from 'react-icons/ai';
 type Itables = {
@@ -10,12 +12,13 @@ type Itables = {
 type officilProps = {
   id: string;
   attributes: {
+    DataDeEntrega: string | null;
+    createdAt: string;
+    data: string;
     nome: string;
-    email: string;
-    telefone: string;
   };
 };
-const TableThree: React.FC<Itables> = ({
+const TableThreePedidos: React.FC<Itables> = ({
   heads,
   data,
   onRemove,
@@ -51,16 +54,20 @@ const TableThree: React.FC<Itables> = ({
                   </td>
                   <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {item?.attributes?.email}
+                      {item?.attributes?.DataDeEntrega}
                     </h5>
                   </td>{' '}
                   <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {item?.attributes?.telefone}
+                      {format(
+                        new Date(item?.attributes?.createdAt),
+                        'dd/MM/yyyy',
+                        { locale: ptBR }
+                      )}
                     </h5>
                   </td>
                   <td className="px-10">
-                    <div className="flex items-center space-x-3.5">
+                    {/* <div className="flex items-center space-x-3.5">
                       <button
                         className="hover:text-primary"
                         onClick={() => onRemove(item)}
@@ -97,7 +104,7 @@ const TableThree: React.FC<Itables> = ({
                       >
                         <AiOutlineEdit />
                       </button>
-                    </div>
+                    </div> */}
                   </td>
                 </tr>
               </>
@@ -109,4 +116,4 @@ const TableThree: React.FC<Itables> = ({
   );
 };
 
-export default TableThree;
+export default TableThreePedidos;

@@ -7,6 +7,7 @@ import {
   MdProductionQuantityLimits,
 } from 'react-icons/md';
 import { FiUsers } from 'react-icons/fi';
+import { TbCategory } from 'react-icons/tb';
 import { MdRestaurantMenu } from 'react-icons/md';
 
 interface SidebarProps {
@@ -230,7 +231,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </li> */}
               <li>
                 <NavLink
-                  to="/calendar"
+                  to="/pedidos"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('pedidos') && 'bg-graydark dark:bg-meta-4'
                   }`}
@@ -241,14 +242,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </li>
               <li>
                 <NavLink
-                  to="/calendar"
+                  to="/official"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('funcionarios') &&
                     'bg-graydark dark:bg-meta-4'
                   }`}
                 >
                   <FiUsers />
-                  Funcionários
+                  Funcionarios
                 </NavLink>
               </li>
               <li>
@@ -292,6 +293,19 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Perfil
                 </NavLink>
               </li>
+
+              <li>
+                <NavLink
+                  to="/Category"
+                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes('perfil') && 'bg-graydark dark:bg-meta-4'
+                  }`}
+                >
+                  <TbCategory />
+                  Categoria
+                </NavLink>
+              </li>
+
               {/* <!-- Menu Item Profile --> */}
               <li>
                 <NavLink
