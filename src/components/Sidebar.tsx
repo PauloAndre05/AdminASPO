@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import Logo from '../images/logo/logo.svg';
 import SidebarLinkGroup from './SidebarLinkGroup';
+
 import {
   MdOutlineRequestPage,
   MdProductionQuantityLimits,
@@ -9,6 +10,8 @@ import {
 import { FiUsers } from 'react-icons/fi';
 import { TbCategory } from 'react-icons/tb';
 import { MdRestaurantMenu } from 'react-icons/md';
+
+import logoAspo from "../../src/images/logoASPO.png"
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -73,7 +76,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <NavLink to="/">
           {/* <img src={Logo} alt="Logo" /> */}
-          <h2 className="text-3xl font-semibold text-white">Restaurante</h2>
+          <h2 className="text-3xl font-semibold text-white"><img src={logoAspo} alt="" /></h2>
         </NavLink>
 
         <button
@@ -192,7 +195,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && '!text-white')
                               }
                             >
-                              Home
+                              Inicio
                             </NavLink>
                           </li>
                         </ul>
@@ -237,7 +240,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   }`}
                 >
                   <MdOutlineRequestPage />
-                  Pedidos
+                  Agendamentos
                 </NavLink>
               </li>
               <li>
@@ -249,10 +252,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   }`}
                 >
                   <FiUsers />
-                  Funcionarios
+                  Usuarios
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink
                   to="/calendar"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -262,7 +265,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   <MdRestaurantMenu />
                   Menus
                 </NavLink>
-              </li>
+              </li> */}
               {/* <!-- Menu Item Calendar --> */}
 
               {/* <!-- Menu Item Profile --> */}
@@ -302,7 +305,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   }`}
                 >
                   <TbCategory />
-                  Categoria
+                  Serviços
                 </NavLink>
               </li>
 

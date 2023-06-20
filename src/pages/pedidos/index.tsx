@@ -82,7 +82,7 @@ export const Pedidos = () => {
         <FormCategoryEdit onclose={closeModalEdit} item={item} />
       </Modal> */}
 
-      <Breadcrumb pageName="Pedidos" />
+      <Breadcrumb pageName="Agendamentos" /> 
 
       {/* <!-- ====== Calendar Section Start ====== --> */}
       {/* <div className="flex flex-1 justify-end py-2">
