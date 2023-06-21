@@ -11,8 +11,7 @@ type officilProps = {
   id: string;
   attributes: {
     nome: string;
-    email: string;
-    telefone: string;
+    descricao: string;
   };
 };
 const TableThreeCategory: React.FC<Itables> = ({

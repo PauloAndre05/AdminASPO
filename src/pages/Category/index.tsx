@@ -22,6 +22,26 @@ type officilProps = {
 };
 
 export const Category = () => {
+
+
+/*   const urlServico = "http://localhost:5555/servico"
+
+const [dataService, setDataService] = useState([])
+    
+  const getService = async () =>{
+      try{
+          const response = await fetch(urlServico)
+          const responseData = await response.json()
+          setDataService(responseData)
+      }
+      catch (error){
+          console.log(error);
+      }
+  }        
+
+  getService()
+
+ */
   const { data: Categorias } = useFetch('/categorias');
   const [item, setItem] = useState<officilProps>({
     attributes: {
@@ -73,16 +93,16 @@ export const Category = () => {
   return (
     <DefaultLayout>
       <Modal isOpen={isOpen} onClose={closeModal}>
-        <h2 className="mb-4 text-xl font-bold">Adicionar Categoria</h2>
+        <h2 className="mb-4 text-xl font-bold">Adicionar Serviço</h2>
         <FormCategory onclose={closeModal} />
       </Modal>
 
       <Modal isOpen={isOpenEdit} onClose={closeModalEdit}>
-        <h2 className="mb-4 text-xl font-bold">Actulizar Categoria</h2>
+        <h2 className="mb-4 text-xl font-bold">Actulizar Serviço</h2>
         <FormCategoryEdit onclose={closeModalEdit} item={item} />
       </Modal>
 
-      <Breadcrumb pageName="Categoria" />
+      <Breadcrumb pageName="Servicos" />
 
       {/* <!-- ====== Calendar Section Start ====== --> */}
       <div className="flex flex-1 justify-end py-2">
@@ -95,7 +115,7 @@ export const Category = () => {
       </div>
       <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <TableThreeCategory
-          heads={['Nome', 'Acção']}
+          heads={['Nome', 'Requisitos', 'Acção']}
           data={Categorias?.data}
           onRemove={onRemove}
           openModalEdit={openModalEdit}

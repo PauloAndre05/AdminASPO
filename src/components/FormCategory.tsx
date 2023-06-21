@@ -1,7 +1,6 @@
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
-import { api } from '../services';
 import { mutate } from 'swr';
 import React from 'react';
 
@@ -10,22 +9,38 @@ type formProps = {
 };
 
 export const FormCategory: React.FC<formProps> = () => {
+
+  const urlServico = "http://localhost:5555/servico"
+
   const formik = useFormik({
     initialValues: {
       nome: '',
+      descricao: '',
     },
     validationSchema: yup.object({
-      nome: yup.string().required('Este campo é obrigatório'),
+      nome: yup.string().required('Adicione o nome do servico'),
+      descricao: yup.string().required('Adicione os requisitos'),
     }),
-    onSubmit: async (fields) => {
+    onSubmit: async (data) => {
       try {
-        const response = await api.post('/categorias', { data: { ...fields } });
+        const response = await fetch(urlServico, {
+          method: "POST",
+          headers:{
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data)
+        });
 
-        if (response) {
+        if (response.ok) {
           mutate('/categorias');
           formik.resetForm();
-          toast.success('Categoria cadastrada com sucesso');
+          toast.success('Serviço adicionado com sucesso');
         }
+
+        else{
+          toast.error('Erro')
+        }
+
       } catch (err: any) {
         toast.error(err?.error?.message);
       }
@@ -43,20 +58,35 @@ export const FormCategory: React.FC<formProps> = () => {
           </div> */}
           <form onSubmit={formik.handleSubmit}>
             <div className="p-6.5">
-              <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
+              <div className="mb-4.5 gap-6 xl:flex-row">
                 <div className="w-full ">
                   <label className="mb-2.5 block text-black dark:text-white">
                     Nome
                   </label>
                   <input
                     type="text"
-                    placeholder="Insira um nome"
+                    placeholder="Nome do derviço..."
                     id="nome"
                     name="nome"
                     value={formik.values.nome}
                     onChange={formik.handleChange}
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
+                </div>
+
+                <div className="w-full ">
+                  <label className="mb-2.5 block text-black dark:text-white">
+                    Requisitos
+                  </label>
+                  <textarea 
+                    placeholder="Requisitos..."
+                    id="descricao"
+                    name="descricao"
+                    value={formik.values.descricao}
+                    onChange={formik.handleChange}
+                    className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+
+                    </textarea>
                 </div>
 
                 {/* <div className="w-full xl:w-1/2">
