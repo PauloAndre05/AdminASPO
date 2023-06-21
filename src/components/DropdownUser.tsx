@@ -1,11 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import UserOne from '../images/user/user-01.png';
 import useFetch from '../hooks/usefetch';
-import { getUserInfo } from '../pages/Authentication/services';
+import { getUserInfo, logout } from '../pages/Authentication/services';
 
 const DropdownUser = () => {
+
+  const navigate = useNavigate()
+
+  function goOut() {
+    logout();
+    navigate("/auth/signin");
+  }
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const pop = getUserInfo();
@@ -111,10 +117,10 @@ const DropdownUser = () => {
                   fill=""
                 />
               </svg>
-              My Profile
+              Perfil
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="#"
               className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
@@ -132,9 +138,9 @@ const DropdownUser = () => {
                   fill=""
                 />
               </svg>
-              My Contacts
+              Meus
             </Link>
-          </li>
+          </li> 
           <li>
             <Link
               to="/settings"
@@ -159,9 +165,9 @@ const DropdownUser = () => {
               </svg>
               Account Settings
             </Link>
-          </li>
+          </li> */}
         </ul>
-        <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+        <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base" onClick={() => goOut()}>
           <svg
             className="fill-current"
             width="22"
@@ -179,7 +185,7 @@ const DropdownUser = () => {
               fill=""
             />
           </svg>
-          Log Out
+          Sair
         </button>
       </div>
       {/* <!-- Dropdown End --> */}
