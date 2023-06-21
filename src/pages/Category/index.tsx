@@ -24,7 +24,7 @@ type officilProps = {
 export const Category = () => {
 
 
-/*   const urlServico = "http://localhost:5555/servico"
+  const urlServico = "http://localhost:5555/servico"
 
 const [dataService, setDataService] = useState([])
     
@@ -41,7 +41,7 @@ const [dataService, setDataService] = useState([])
 
   getService()
 
- */
+
   const { data: Categorias } = useFetch('/categorias');
   const [item, setItem] = useState<officilProps>({
     attributes: {

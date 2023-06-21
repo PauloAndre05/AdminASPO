@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
-import { api } from '../../services/';
+import { api } from '../../services';
 import { mutate } from 'swr';
 import React from 'react';
 

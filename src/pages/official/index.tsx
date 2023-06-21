@@ -82,7 +82,7 @@ export const Official = () => {
         <FormOfficialEdit onclose={closeModalEdit} item={item} />
       </Modal>
 
-      <Breadcrumb pageName="Funcionarios" />
+      <Breadcrumb pageName="Postos de atendimento" />
 
       {/* <!-- ====== Calendar Section Start ====== --> */}
       <div className="flex flex-1 justify-end py-2">
@@ -95,7 +95,7 @@ export const Official = () => {
       </div>
       <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <TableThree
-          heads={['Nome', 'Email', 'Telefone', 'Acção']}
+          heads={['Nome', 'Localização', 'Limite Diário', 'Acção']}
           data={Official?.data}
           onRemove={onRemove}
           openModalEdit={openModalEdit}

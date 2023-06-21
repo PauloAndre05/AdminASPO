@@ -18,7 +18,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { getUserInfo } from './pages/Authentication/services';
 import { Official } from './pages/official';
 import { Category } from './pages/Category';
-import { Pedidos } from './pages/pedidos';
+import { Pedidos } from './pages/agendementos';
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -42,9 +42,9 @@ function App() {
       <Routes>
         <Route path="/" element={<ECommerce />} />
         <Route path="/calendar" element={<Calendar />} />
-        <Route path="/official" element={<Official />} />
+        <Route path="/postoDeAtendimento" element={<Official />} />
         <Route path="/Category" element={<Category />} />
-        <Route path="/pedidos" element={<Pedidos />} />
+        <Route path="/agendamentos" element={<Pedidos />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forms/form-elements" element={<FormElements />} />
         <Route path="/forms/form-layout" element={<FormLayout />} />

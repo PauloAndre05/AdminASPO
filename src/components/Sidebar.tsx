@@ -234,25 +234,41 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </li> */}
               <li>
                 <NavLink
-                  to="/pedidos"
+                  to="/agendamentos"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes('pedidos') && 'bg-graydark dark:bg-meta-4'
+                    pathname.includes('agendamentos') && 'bg-graydark dark:bg-meta-4'
                   }`}
                 >
-                  <MdOutlineRequestPage />
+                  <svg 
+                    className="fill-current"
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="18" 
+                    height="18" 
+                    fill="#000000"
+                    viewBox="0 0 256 256"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-96-88v64a8,8,0,0,1-16,0V132.94l-4.42,2.22a8,8,0,0,1-7.16-14.32l16-8A8,8,0,0,1,112,120Zm59.16,30.45L152,176h16a8,8,0,0,1,0,16H136a8,8,0,0,1-6.4-12.8l28.78-38.37A8,8,0,1,0,145.07,132a8,8,0,1,1-13.85-8A24,24,0,0,1,176,136,23.76,23.76,0,0,1,171.16,150.45Z"></path></svg>
+
                   Agendamentos
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to="/official"
+                  to="/postoDeAtendimento"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('funcionarios') &&
                     'bg-graydark dark:bg-meta-4'
                   }`}
                 >
-                  <FiUsers />
-                  Usuarios
+                  <svg 
+                    className="fill-current"
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="18" 
+                    height="18" 
+                    fill="#000000" 
+                    viewBox="0 0 256 256"
+                  >
+                      <path d="M240,208H224V96a16,16,0,0,0-16-16H144V32a16,16,0,0,0-24.88-13.32L39.12,72A16,16,0,0,0,32,85.34V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM208,96V208H144V96ZM48,85.34,128,32V208H48ZM112,112v16a8,8,0,0,1-16,0V112a8,8,0,1,1,16,0Zm-32,0v16a8,8,0,0,1-16,0V112a8,8,0,1,1,16,0Zm0,56v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Zm32,0v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Z"></path>
+                  </svg>
+                  Potos de atendimento
                 </NavLink>
               </li>
               {/* <li>
@@ -304,13 +320,21 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     pathname.includes('perfil') && 'bg-graydark dark:bg-meta-4'
                   }`}
                 >
-                  <TbCategory />
+                  
+                  <svg 
+                    className="fill-current"
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="18" 
+                    height="18" 
+                    fill="#000000" 
+                    viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Z"></path></svg>
+
                   Serviços
                 </NavLink>
               </li>
 
               {/* <!-- Menu Item Profile --> */}
-              <li>
+             {/*  <li>
                 <NavLink
                   to="/4"
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -350,7 +374,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Usuarios
                 </NavLink>
               </li>
-
+ */}
               {/* <!-- Menu Item Forms --> */}
               <SidebarLinkGroup
                 activeCondition={
@@ -536,7 +560,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       </clipPath>
                     </defs>
                   </svg>
-                  Settings
+                  Definições
                 </NavLink>
               </li>
               {/* <!-- Menu Item Settings --> */}
@@ -753,7 +777,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             </clipPath>
                           </defs>
                         </svg>
-                        Authentication
+                        Conta
                         <svg
                           className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
                             open && 'rotate-180'
