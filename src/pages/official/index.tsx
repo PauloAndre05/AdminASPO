@@ -67,13 +67,11 @@ export const Official = () => {
     }
   }
 
-  console.log(Official);
-  console.log(Cargo);
 
   return (
     <DefaultLayout>
       <Modal isOpen={isOpen} onClose={closeModal}>
-        <h2 className="mb-4 text-xl font-bold">Adicionar Funcionario</h2>
+        <h2 className="mb-4 text-xl font-bold">Cadastrar Posto de Atendimento</h2>
         <FormOfficial onclose={closeModal} />
       </Modal>
 
