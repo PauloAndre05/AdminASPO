@@ -19,7 +19,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
   return (
     <div
-      className="fixed inset-0 top-20 flex items-center justify-center overflow-y-auto overflow-x-hidden"
+      className="fixed inset-0 top-20 flex items-center justify-center overflow-y-auto overflow-hidden"
       onClick={handleClickOutside}
     >
       <div className="fixed inset-0 transition-opacity">
