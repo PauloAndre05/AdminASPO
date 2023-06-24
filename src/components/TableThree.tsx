@@ -8,13 +8,11 @@ type Itables = {
 };
 
 type officilProps = {
-  id: string;
-  attributes: {
-    nome: string;
-    email: string;
-    telefone: string;
+  id: string
+  nome: string
+  local: string
+  limiteDiario: number
   };
-};
 const TableThree: React.FC<Itables> = ({
   heads,
   data,
@@ -41,22 +39,22 @@ const TableThree: React.FC<Itables> = ({
             </tr>
           </thead>
           <tbody>
-            {data?.map((item, idx) => (
+            {data?.map((item) => (
               <>
-                <tr key={idx} className="">
+                <tr key={item.id} className="">
                   <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {item?.attributes?.nome}
+                      {item?.nome}
                     </h5>
                   </td>
                   <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {item?.attributes?.email}
+                      {item?.local}
                     </h5>
                   </td>{' '}
                   <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {item?.attributes?.telefone}
+                      {item?.limiteDiario}
                     </h5>
                   </td>
                   <td className="px-10">

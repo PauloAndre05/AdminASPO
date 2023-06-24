@@ -12,24 +12,26 @@ import { FormOfficialEdit } from './EditOficial';
 
 type officilProps = {
   id: string;
-  attributes: {
-    nome: string;
-    email: string;
-    telefone: string;
+  nome: string;
+  local: string;
+  limiteDiario: number;
+  cordenadas: string
   };
-};
+
 
 export const Official = () => {
-  const { data: Official } = useFetch('/funcionarios');
-  const { data: Cargo } = useFetch('/cargos');
+  const { data: posto } = useFetch('/posto');
   const [item, setItem] = useState<officilProps>({
-    attributes: {
-      email: '',
+      id: '',
       nome: '',
-      telefone: '',
-    },
-    id: '',
+      local: '',
+      limiteDiario: 0,
+      cordenadas: '',
   });
+
+
+  
+
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
 
@@ -50,16 +52,16 @@ export const Official = () => {
     setIsOpenEdit(false);
   };
 
-  async function onRemove(item: { id: string; attributes: { nome: string } }) {
+  async function onRemove(item: officilProps) {
     const resp = confirm(
-      `Tens certeza que queres eliminar o(a) ${item?.attributes?.nome} `
+      `Tens certeza que queres eliminar o(a) ${item?.nome} `
     );
     if (resp) {
       try {
-        const response = await api.delete(`/funcionarios/${item?.id}`);
+        const response = await api.delete(`/posto/${item?.id}`);
         if (response) {
-          mutate('/funcionarios');
-          toast.success('Funcionario deletado com sucesso');
+          mutate('/posto');
+          toast.success('Posto deletado com sucesso');
         }
       } catch (err: any) {
         toast.error(err?.error?.message);
@@ -76,7 +78,7 @@ export const Official = () => {
       </Modal>
 
       <Modal isOpen={isOpenEdit} onClose={closeModalEdit}>
-        <h2 className="mb-4 text-xl font-bold">Actulizar Funcionario</h2>
+        <h2 className="mb-4 text-xl font-bold">Actulizar Posto</h2>
         <FormOfficialEdit onclose={closeModalEdit} item={item} />
       </Modal>
 
@@ -94,12 +96,11 @@ export const Official = () => {
       <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <TableThree
           heads={['Nome', 'Localização', 'Limite Diário', 'Acção']}
-          data={Official?.data}
+          data={posto}
           onRemove={onRemove}
           openModalEdit={openModalEdit}
         />
       </div>
-      {/* <!-- ====== Calendar Section End ====== --> */}
     </DefaultLayout>
   );
 };

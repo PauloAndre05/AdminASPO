@@ -13,7 +13,7 @@ export const FormOfficial: React.FC<formProps> = () => {
 
   const urlPosto = "http://localhost:5555/posto"
 
-  const formik = useFormik({
+  const formik = useFormik({  
     initialValues: {
       nome: '',
       local: '',
@@ -27,8 +27,6 @@ export const FormOfficial: React.FC<formProps> = () => {
       limiteDiario: yup.number().required('Especifique o limite de atendimento diário')
     }),
     onSubmit: async (data) => {
-
-      console.log(data);
       
       try {
         const response = await fetch(urlPosto, {
@@ -40,7 +38,7 @@ export const FormOfficial: React.FC<formProps> = () => {
         });
 
         if (response.ok) {
-          mutate('/funcionarios');
+          mutate('/posto');
           formik.resetForm();
           toast.success('Posto cadastrado com sucesso');
         }

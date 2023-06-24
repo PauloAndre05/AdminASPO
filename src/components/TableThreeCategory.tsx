@@ -8,11 +8,9 @@ type Itables = {
 };
 
 type officilProps = {
-  id: string;
-  attributes: {
-    nome: string;
-    descricao: string;
-  };
+  id: string
+  nome: string
+  descricao: string
 };
 const TableThreeCategory: React.FC<Itables> = ({
   heads,
@@ -40,12 +38,18 @@ const TableThreeCategory: React.FC<Itables> = ({
             </tr>
           </thead>
           <tbody>
-            {data?.map((item, idx) => (
+            {data?.map((item: officilProps) => (
               <>
-                <tr key={idx} className="">
+                <tr key={item.id} className="">
                   <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {item?.attributes?.nome}
+                      {item?.nome}
+                    </h5>
+                  </td>
+
+                  <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
+                    <h5 className="font-medium text-black dark:text-white">
+                      {item?.descricao}
                     </h5>
                   </td>
                   <td className="px-10">

@@ -6,24 +6,35 @@ type Itables = {
   heads: string[];
   data: officilProps[];
   onRemove: (item: officilProps) => void;
-  openModalEdit: (item: officilProps) => void;
+  openModalEdit: (item: officilProps) => void; 
 };
 
 type officilProps = {
   id: string;
-  attributes: {
-    DataDeEntrega: string | null;
-    createdAt: string;
-    data: string;
-    nome: string;
-  };
+  nome: string
+  dataAgenda: string
+  postoAtendimento: postoAtendimentoProps
+  servico: servicoProps
 };
+
+interface postoAtendimentoProps {
+ id: string
+ nome: string
+}
+
+interface servicoProps {
+  id: string
+  nome: string
+}
+
 const TableThreePedidos: React.FC<Itables> = ({
   heads,
   data,
   onRemove,
   openModalEdit,
 }) => {
+  console.log(data);
+  
   // const [item, setItem] = useState({});
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
@@ -44,30 +55,37 @@ const TableThreePedidos: React.FC<Itables> = ({
             </tr>
           </thead>
           <tbody>
-            {data?.map((item, idx) => (
+            {data?.map((item: officilProps) => (
               <>
-                <tr key={idx} className="">
+                <tr key={item?.id} className="">
                   <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {item?.attributes?.nome}
+                      {item?.nome}
                     </h5>
                   </td>
                   <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {item?.attributes?.DataDeEntrega}
+                      {item?.servico?.nome}
                     </h5>
                   </td>{' '}
                   <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
                       {format(
-                        new Date(item?.attributes?.createdAt),
+                        new Date(item?.dataAgenda),
                         'dd/MM/yyyy',
                         { locale: ptBR }
                       )}
                     </h5>
                   </td>
+
+                  <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
+                    <h5 className="font-medium text-black dark:text-white">
+                        {item?.postoAtendimento?.nome},
+                    </h5>
+                  </td>
+
                   <td className="px-10">
-                    {/* <div className="flex items-center space-x-3.5">
+                     <div className="flex items-center space-x-3.5">
                       <button
                         className="hover:text-primary"
                         onClick={() => onRemove(item)}
@@ -104,7 +122,7 @@ const TableThreePedidos: React.FC<Itables> = ({
                       >
                         <AiOutlineEdit />
                       </button>
-                    </div> */}
+                    </div> 
                   </td>
                 </tr>
               </>

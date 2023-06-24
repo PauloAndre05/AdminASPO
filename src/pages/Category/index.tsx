@@ -1,5 +1,4 @@
 import Breadcrumb from '../../components/Breadcrumb';
-import TableThree from '../../components/TableThree';
 import useFetch from '../../hooks/usefetch';
 import DefaultLayout from '../../layout/DefaultLayout';
 import { useState } from 'react';
@@ -7,54 +6,28 @@ import Modal from '../../components/Modal';
 import { api } from '../../services';
 import { toast } from 'react-toastify';
 import { mutate } from 'swr';
-import { FormOfficialEdit } from '../official/EditOficial';
 import { FormCategory } from '../../components/FormCategory';
 import TableThreeCategory from '../../components/TableThreeCategory';
 import { FormCategoryEdit } from './EditCategory';
 
 type officilProps = {
-  id: string;
-  attributes: {
-    nome: string;
-    email: string;
-    telefone: string;
-  };
+  id: string,
+  nome: string,
+  descricao: string
 };
 
 export const Category = () => {
 
-
-  const urlServico = "http://localhost:5555/servico"
-
-const [dataService, setDataService] = useState([])
-    
-  const getService = async () =>{
-      try{
-          const response = await fetch(urlServico)
-          const responseData = await response.json()
-          setDataService(responseData)
-      }
-      catch (error){
-          console.log(error);
-      }
-  }        
-
-  getService()
-
-
-  const { data: Categorias } = useFetch('/categorias');
+  const { data: servico } = useFetch('/servico');
   const [item, setItem] = useState<officilProps>({
-    attributes: {
-      email: '',
-      nome: '',
-      telefone: '',
-    },
     id: '',
+    nome: '',
+    descricao: ''
   });
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
 
-  console.log(Categorias);
+  console.log(servico);
 
   const openModal = () => {
     setIsOpen(true);
@@ -73,16 +46,16 @@ const [dataService, setDataService] = useState([])
     setIsOpenEdit(false);
   };
 
-  async function onRemove(item: { id: string; attributes: { nome: string } }) {
+  async function onRemove(item: officilProps) {
     const resp = confirm(
-      `Tens certeza que queres eliminar o(a) ${item?.attributes?.nome} `
+      `Tens certeza que queres eliminar o ${item?.nome} `
     );
     if (resp) {
       try {
-        const response = await api.delete(`/categorias/${item?.id}`);
+        const response = await api.delete(`/servico/${item?.id}`);
         if (response) {
-          mutate('/categorias');
-          toast.success('Categoria deletada com sucesso');
+          mutate('/servico');
+          toast.success('Servico deletado com sucesso');
         }
       } catch (err: any) {
         toast.error(err?.error?.message);
@@ -116,12 +89,11 @@ const [dataService, setDataService] = useState([])
       <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <TableThreeCategory
           heads={['Nome', 'Requisitos', 'Acção']}
-          data={Categorias?.data}
+          data={servico}
           onRemove={onRemove}
           openModalEdit={openModalEdit}
         />
       </div>
-      {/* <!-- ====== Calendar Section End ====== --> */}
     </DefaultLayout>
   );
 };

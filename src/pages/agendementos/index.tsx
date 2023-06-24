@@ -13,24 +13,14 @@ import TableThreePedidos from '../../components/TableThreePedidos';
 
 type officilProps = {
   id: string;
-  attributes: {
-    nome: string;
-    email: string;
-    telefone: string;
-  };
 };
 
 export const Pedidos = () => {
-  const { data: Pedidos } = useFetch('/pedidos');
+  const { data: agendamento } = useFetch('/agendamento');
 
-  console.log(Pedidos);
+  console.log(agendamento);
 
   const [item, setItem] = useState<officilProps>({
-    attributes: {
-      email: '',
-      nome: '',
-      telefone: '',
-    },
     id: '',
   });
   const [isOpen, setIsOpen] = useState(false);
@@ -53,16 +43,16 @@ export const Pedidos = () => {
     setIsOpenEdit(false);
   };
 
-  async function onRemove(item: { id: string; attributes: { nome: string } }) {
+  async function onRemove(item: officilProps) {
     const resp = confirm(
-      `Tens certeza que queres eliminar o(a) ${item?.attributes?.nome} `
+      `Tens certeza que queres eliminar o(a) ${item?.id} `
     );
     if (resp) {
       try {
-        const response = await api.delete(`/categorias/${item?.id}`);
+        const response = await api.delete(`/agendamento/eliminar/${item?.id}`);
         if (response) {
-          mutate('/categorias');
-          toast.success('Categoria deletada com sucesso');
+          mutate('/agendamento');
+          toast.success('Agendamento deletado com sucesso');
         }
       } catch (err: any) {
         toast.error(err?.error?.message);
@@ -73,7 +63,7 @@ export const Pedidos = () => {
   return (
     <DefaultLayout>
       <Modal isOpen={isOpen} onClose={closeModal}>
-        <h2 className="mb-4 text-xl font-bold">Listar Pedidos</h2>
+        <h2 className="mb-4 text-xl font-bold">Listar agendamento</h2>
         <FormCategory onclose={closeModal} />
       </Modal>
 
@@ -96,9 +86,9 @@ export const Pedidos = () => {
       <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ">
         <TableThreePedidos
           heads={['Nome', 'Documento', 'Data agendada', 'Posto', 'Acção']}
-          data={Pedidos?.data}
+          data={agendamento}
           onRemove={onRemove}
-          openModalEdit={openModalEdit}
+          openModalEdit={openModalEdit} 
         />
       </div>
       {/* <!-- ====== Calendar Section End ====== --> */}
