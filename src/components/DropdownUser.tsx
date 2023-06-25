@@ -7,17 +7,17 @@ import { getUserInfo, logout } from '../pages/Authentication/services';
 const DropdownUser = () => {
 
   const navigate = useNavigate()
-
+  
+  const pop = getUserInfo();
+  const id = pop?.sub
+  const { data: User } = useFetch(`/adminGeral/${id}`);
+  
   function goOut() {
     logout();
     navigate("/auth/signin");
   }
+  
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const pop = getUserInfo();
-  const { data: User } = useFetch(`/users/${pop?.id}`);
-  console.log(User);
-
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
 
@@ -57,13 +57,13 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            {User?.username}
+            {User?.nome}
           </span>
           <span className="block text-xs">{User?.email}</span>
         </span>
 
-        <span className="flex h-12 w-12 items-center justify-center rounded-full border-2">
-          {User?.username[0]?.toUpperCase()}
+        <span className="flex h-10 w-10 items-center justify-center rounded-full border-2">
+          {User?.nome[0]?.toUpperCase()}
         </span>
 
         <svg

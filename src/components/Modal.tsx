@@ -27,7 +27,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
       </div>
       <div
         ref={modalRef}
-        className="relative mx-5 w-full max-w-lg rounded-lg bg-white p-6 md:mx-auto"
+        className="relative mx-5 w-full max-w-lg rounded-lg bg-boxdark dark:bg-white p-6 md:mx-auto "
       >
         <button
           className="text-gray-500 hover:text-gray-700 absolute right-0 top-0 mr-4 mt-4"

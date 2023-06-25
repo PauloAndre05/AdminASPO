@@ -4,6 +4,8 @@ interface DataPosto{
   id: string
   nome: string
   Agendamento: any[]
+  Confirmado: any[]
+  Cancelado: any[]
 }
 
 const TableOne = () => {
@@ -78,11 +80,11 @@ const TableOne = () => {
           </div>
 
           <div className="flex items-center justify-center p-2.5 xl:p-5">
-            <p className="text-meta-3">0</p>
+            <p className="text-meta-3">{data.Confirmado.length}</p>
           </div>
 
           <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-            <p className="text-black dark:text-white">0</p>
+            <p className="text-black dark:text-white">{data.Cancelado.length}</p>
           </div>
 
           <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">

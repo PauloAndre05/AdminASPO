@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const SignIn = () => {
   // document.location.hostname = '/auth/signin';
-  const login = "http://localhost:5555/login/auth";
+  const login = "http://localhost:5555/loginAdminGeral/auth";
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -31,7 +31,6 @@ const SignIn = () => {
           const responseData = await response.json();
           setCookie(null, "token", responseData?.token, { path: "/" });
           navigate("/")
-          localStorage.setItem("token", responseData.token);
           formik.resetForm();
         } else {
           console.log("erooon");

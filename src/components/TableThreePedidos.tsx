@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import React from 'react';
-import { AiOutlineEdit } from 'react-icons/ai';
+import { BsCheck2 } from 'react-icons/bs';
 type Itables = {
   heads: string[];
   data: officilProps[];
@@ -80,7 +80,7 @@ const TableThreePedidos: React.FC<Itables> = ({
 
                   <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                        {item?.postoAtendimento?.nome},
+                        {item?.postoAtendimento?.nome}
                     </h5>
                   </td>
 
@@ -120,7 +120,16 @@ const TableThreePedidos: React.FC<Itables> = ({
                         className="hover:text-primary"
                         onClick={() => openModalEdit(item)}
                       >
-                        <AiOutlineEdit />
+                        <svg 
+                          className="fill-current"
+                          xmlns="http://www.w3.org/2000/svg" 
+                          width="25" 
+                          height="25" 
+                          viewBox="0 0 256 256"
+                        >
+                          <path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+                          </path>
+                        </svg>
                       </button>
                     </div> 
                   </td>

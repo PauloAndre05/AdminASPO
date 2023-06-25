@@ -32,7 +32,7 @@ export const FormCategory: React.FC<formProps> = () => {
         });
 
         if (response.ok) {
-          mutate('/categorias');
+          mutate('/servico');
           formik.resetForm();
           toast.success('Serviço adicionado com sucesso');
         }

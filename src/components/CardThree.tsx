@@ -1,4 +1,26 @@
+import { useState } from "react";
+
 const CardThree = () => {
+
+  const urlCancelado =  "http://localhost:5555/cancelado"
+  const [ datacancelado, setDataCancelado ] = useState([])
+
+  const getCancelado =async () => {
+    try{
+      const response = await fetch (urlCancelado)
+      const responseData = await response.json()
+      setDataCancelado(responseData)
+    }
+
+    catch (error){
+      console.log(error);
+    }
+
+  }
+  getCancelado()
+
+  
+
   return (
     <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
@@ -25,7 +47,7 @@ const CardThree = () => {
       <div className="mt-4 flex items-end justify-between">
         <div>
           <h4 className="text-title-md font-bold text-black dark:text-white">
-            0
+            {datacancelado.length}
           </h4>
           <span className="text-sm font-medium">Total de cancelados</span>
         </div>

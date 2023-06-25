@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 /* import Logo from '../images/logo/logo.svg'; */
 import SidebarLinkGroup from './SidebarLinkGroup';
 
@@ -12,6 +12,8 @@ import { TbCategory } from 'react-icons/tb';
 import { MdRestaurantMenu } from 'react-icons/md';
  */
 import logoAspo from "../../src/images/logoASPO.png"
+import { getUserInfo, logout } from '../pages/Authentication/services';
+import useFetch from '../hooks/usefetch';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -29,6 +31,24 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const [sidebarExpanded, setSidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true'
   );
+
+  const navigate = useNavigate()
+
+  interface User{
+    id: string
+    nome: string
+    email: string
+  }
+
+  function goOut() {
+    logout();
+    navigate("/auth/signin");
+  }
+  const pop = getUserInfo();
+  const id = pop?.sub
+  const { data: User } = useFetch(`/adminGeral/${id}`);
+ 
+  
 
   // close on click outside
   useEffect(() => {
@@ -593,15 +613,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       >
                         <ul className="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
                           <li>
-                            <NavLink
-                              to="/auth/signin"
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
+                            <button
+                              onClick={() => goOut()}
                             >
                               Sair
-                            </NavLink>
+                            </button>
                           </li>
                         
                         </ul>
