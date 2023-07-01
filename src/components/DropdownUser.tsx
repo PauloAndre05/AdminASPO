@@ -12,6 +12,7 @@ const DropdownUser = () => {
   const id = pop?.sub
   const { data: User } = useFetch(`/adminGeral/${id}`);
   
+  
   function goOut() {
     logout();
     navigate("/auth/signin");

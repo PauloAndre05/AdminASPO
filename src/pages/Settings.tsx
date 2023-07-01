@@ -1,19 +1,30 @@
 import Breadcrumb from '../components/Breadcrumb';
+import useFetch from '../hooks/usefetch';
 import userThree from '../images/user/user-03.png';
 import DefaultLayout from '../layout/DefaultLayout';
+import { useState } from "react";
+import { getUserInfo } from './Authentication/services';
 
 const Settings = () => {
+
+  /* const [ user setUserData ] = useState() */
+
+  const pop = getUserInfo();
+  const id = pop?.sub
+  const { data: User } = useFetch(`/adminGeral/${id}`);
+  
+
   return (
     <DefaultLayout>
       <div className="mx-auto max-w-270">
-        <Breadcrumb pageName="Settings" />
+        <Breadcrumb pageName="Definições" />
 
         <div className="grid grid-cols-5 gap-8">
           <div className="col-span-5 xl:col-span-3">
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
-                  Personal Information
+                  Infrormacões Pessoais 
                 </h3>
               </div>
               <div className="p-7">
@@ -24,7 +35,7 @@ const Settings = () => {
                         className="mb-3 block text-sm font-medium text-black dark:text-white"
                         htmlFor="fullName"
                       >
-                        Full Name
+                        Nome Completo
                       </label>
                       <div className="relative">
                         <span className="absolute left-4.5 top-4">
@@ -57,13 +68,13 @@ const Settings = () => {
                           type="text"
                           name="fullName"
                           id="fullName"
-                          placeholder="Devid Jhon"
-                          defaultValue="Devid Jhon"
+                          placeholder="Nome Completo"
+                          defaultValue={User?.nome}
                         />
                       </div>
                     </div>
 
-                    <div className="w-full sm:w-1/2">
+                    {/* <div className="w-full sm:w-1/2">
                       <label
                         className="mb-3 block text-sm font-medium text-black dark:text-white"
                         htmlFor="phoneNumber"
@@ -76,9 +87,9 @@ const Settings = () => {
                         name="phoneNumber"
                         id="phoneNumber"
                         placeholder="+990 3343 7865"
-                        defaultValue="+990 3343 7865"
+                        defaultValue={}
                       />
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="mb-5.5">
@@ -120,12 +131,12 @@ const Settings = () => {
                         name="emailAddress"
                         id="emailAddress"
                         placeholder="devidjond45@gmail.com"
-                        defaultValue="devidjond45@gmail.com"
+                        defaultValue={User?.email}
                       />
                     </div>
                   </div>
 
-                  <div className="mb-5.5">
+                  {/* <div className="mb-5.5">
                     <label
                       className="mb-3 block text-sm font-medium text-black dark:text-white"
                       htmlFor="Username"
@@ -138,9 +149,9 @@ const Settings = () => {
                       name="Username"
                       id="Username"
                       placeholder="devidjhon24"
-                      defaultValue="devidjhon24"
+                      defaultValue=
                     />
-                  </div>
+                  </div> */}
 
                   <div className="mb-5.5">
                     <label
@@ -210,7 +221,7 @@ const Settings = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-5 xl:col-span-2">
+          {/* <div className="col-span-5 xl:col-span-2">
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
@@ -302,7 +313,7 @@ const Settings = () => {
                 </form>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </DefaultLayout>

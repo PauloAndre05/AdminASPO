@@ -21,8 +21,6 @@ type officilProps = {
 export const Pedidos = () => {
   const { data: agendamento } = useFetch('/agendamento');
 
-  console.log(agendamento);
-
   const [cancelado, setCancelado] = useState([])
 
   const [item, setItem] = useState<officilProps>({
@@ -152,7 +150,7 @@ export const Pedidos = () => {
       </div> */}
       <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ">
         <TableThreePedidos
-          heads={['Nome', 'Documento', 'Data agendada', 'Posto', 'Acção']}
+          heads={['ID', 'Nome', 'Documento', 'Data agendada', 'Posto', 'Acção']}
           data={agendamento}
           onRemove={onRemove}
           openModalEdit={openModalEdit} 

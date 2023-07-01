@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import SignIn from './pages/Authentication/SignIn';
 import Calendar from './pages/Calendar';
@@ -12,9 +12,6 @@ import Settings from './pages/Settings';
 import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
-import { ToastContainer, toast } from 'react-toastify';
-
-import { getUserInfo } from './pages/Authentication/services';
 import { Official } from './pages/official';
 import { Category } from './pages/Category';
 import { Pedidos } from './pages/agendementos';

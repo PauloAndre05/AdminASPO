@@ -14,10 +14,10 @@ import DefaultLayout from '../../layout/DefaultLayout.tsx';
 import { getUserInfo } from '../Authentication/services/index.ts';
 
 const ECommerce = () => {
-  const pop = getUserInfo() as { id: string };
+  const pop = getUserInfo()
+  const id = pop?.sub
   const navigate = useNavigate();
-  const { data: User } = useFetch(`/users/${pop?.id}`);
-  console.log(User);
+  const { data: User } = useFetch(`/adminGeral/${id}`);
 
   if (!pop) {
     navigate('/auth/signin');
