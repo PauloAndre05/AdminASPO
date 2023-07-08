@@ -16,6 +16,7 @@ import { Official } from './pages/official';
 import { Category } from './pages/Category';
 import { Pedidos } from './pages/agendementos';
 import { PrivateRoute } from './services/PrivateRoute';
+import { PublicRoute } from './services/PublicRoute';
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -158,7 +159,9 @@ function App() {
         <Route 
           path="/auth/signin" 
           element={
-            <SignIn />
+            <PublicRoute>
+              <SignIn />
+            </PublicRoute>
           } 
         />
 
