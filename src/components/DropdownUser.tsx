@@ -58,7 +58,7 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            {User?.nome}
+            Administrador Provincial
           </span>
           <span className="block text-xs">{User?.email}</span>
         </span>

@@ -95,7 +95,7 @@ export const Official = () => {
       </div>
       <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <TableThree
-          heads={['Nome', 'Localização', 'Limite Diário', 'Acção']}
+          heads={['Nome', 'Localização', 'Limite Diário', 'Mapa', 'Acção']}
           data={posto}
           onRemove={onRemove}
           openModalEdit={openModalEdit}

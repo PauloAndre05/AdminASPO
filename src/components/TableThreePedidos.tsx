@@ -48,7 +48,7 @@ const TableThreePedidos: React.FC<Itables> = ({
 
     <input
           type="date"
-          value=''
+          value={search}
           onChange={(e) => setSearch(e.target.value.toLowerCase()) }
           className='text-black dark:text-white bg-gray-2 border-none outline-none dark:bg-meta-4 h-full xl:pl-11'
         />

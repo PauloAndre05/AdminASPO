@@ -6,6 +6,7 @@ interface UserInfo{
     nome: string
     email: string
     sub: string
+    senha: string
 }
 
 export const logout = () => {

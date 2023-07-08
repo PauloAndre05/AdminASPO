@@ -131,6 +131,7 @@ export const Pedidos = () => {
 
       <Modal isOpen={isOpenEdit} onClose={closeModalEdit}>
         <h2 className="mb-4 text-xl font-bold text-center text-white dark:text-black">Confirmar Agendamento</h2>
+        <p className='text-center text-white dark:text-graydark'>Tem certeza que quer confirmar este agendamento?</p>
         <div className='flex justify-around mt-5 mb-5 p-10'>
           <button  onClick={closeModalEdit} className='bg-meta-1 px-10 py-3 text-white rounded hover:opacity-[.8]'>Rejeitar</button>
           <button onClick={() => confirmar(item)} className=' bg-primary  px-10 py-3 text-white rounded hover:opacity-[.8]'>Confirmar</button>
